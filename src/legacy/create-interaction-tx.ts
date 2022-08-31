@@ -1,10 +1,12 @@
 import Arweave from 'arweave';
-import { GQLNodeInterface, GQLTagInterface, SigningFunction, SmartWeaveTags } from '@warp';
 import Transaction from 'arweave/node/lib/transaction';
 import { CreateTransactionInterface } from 'arweave/node/common';
 import { BlockData } from 'arweave/node/blocks';
+import { SmartWeaveTags } from '../core/SmartWeaveTags';
+import { GQLNodeInterface, GQLTagInterface } from './gqlResult';
+import { SigningFunction } from '../contract/Contract';
 
-export async function createTx(
+export async function createInteractionTx(
   arweave: Arweave,
   signer: SigningFunction,
   contractId: string,
@@ -12,7 +14,8 @@ export async function createTx(
   tags: { name: string; value: string }[],
   target = '',
   winstonQty = '0',
-  bundle = false
+  dummy = false,
+  reward?: string
 ): Promise<Transaction> {
   const options: Partial<CreateTransactionInterface> = {
     data: Math.random().toString().slice(-4)
@@ -29,9 +32,12 @@ export async function createTx(
   // that are bundled. So to speed up the procees (and prevent the arweave-js
   // from calling /tx_anchor and /price endpoints) - we're presetting theses
   // values here
-  if (bundle) {
+  if (dummy) {
     options.reward = '72600854';
     options.last_tx = 'p7vc1iSP6bvH_fCeUFa9LqoV5qiyW-jdEKouAT0XMoSwrNraB9mgpi29Q10waEpO';
+  }
+  if (reward && reward.length) {
+    options.reward = reward;
   }
 
   const interactionTx = await arweave.createTransaction(options);
