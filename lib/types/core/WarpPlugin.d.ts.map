@@ -1,0 +1,1 @@
+{"version":3,"file":"WarpPlugin.d.ts","sourceRoot":"","sources":["../../../src/core/WarpPlugin.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,gBAAgB,8JAOnB,CAAC;AACX,MAAM,MAAM,cAAc,GAAG,OAAO,gBAAgB,CAAC,MAAM,CAAC,CAAC;AAE7D,MAAM,WAAW,UAAU,CAAC,CAAC,EAAE,CAAC;IAC9B,IAAI,IAAI,cAAc,CAAC;IAEvB,OAAO,CAAC,KAAK,EAAE,CAAC,GAAG,CAAC,CAAC;CACtB"}
